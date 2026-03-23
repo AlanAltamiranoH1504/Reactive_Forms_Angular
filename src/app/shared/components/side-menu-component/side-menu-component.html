@@ -1,0 +1,27 @@
+<h2 class="text-amber-400 uppercase text-4xl text-center font-semibold mb-2">Paginas</h2>
+<hr />
+
+<h3 class="mt-3 text-center text-2xl">Reactive</h3>
+<ul class="list">
+  @for (route of reactiveMenu; track route.title) {
+    <li class="cursor-pointer btn btn-primary my-3 " routerLinkActive="btn-outline text-white" [routerLink]="route.path">{{ route.title }}</li>
+  }
+</ul>
+
+<hr />
+
+<h3 class="mt-3 text-center text-2xl">Auth</h3>
+<ul class="list">
+  @for (route of authMenu; track route.title) {
+    <li class="cursor-pointer btn btn-primary my-3 " routerLinkActive="btn-outline text-white" [routerLink]="route.path">{{ route.title }}</li>
+  }
+</ul>
+
+<hr />
+
+<h3 class="mt-3 text-center text-2xl">Country</h3>
+<ul class="list">
+  @for (route of countryMenu; track route.title) {
+    <li class="cursor-pointer btn btn-primary my-3 " routerLinkActive="btn-outline text-white" [routerLink]="route.path">{{ route.title }}</li>
+  }
+</ul>
