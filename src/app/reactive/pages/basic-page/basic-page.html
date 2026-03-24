@@ -2,7 +2,7 @@
 <hr class="my-4 border-gray-300" />
 
 <div class="max-w-2xl">
-  <form autocomplete="off" class="space-y-6" [formGroup]="myForm">
+  <form autocomplete="off" class="space-y-6" [formGroup]="myForm" (ngSubmit)="onSubmit()">
     <!-- Campo de producto -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
       <label class="md:col-span-1 font-medium text-gray-700">Producto</label>
@@ -14,8 +14,8 @@
           formControlName="nameProduct"
         />
 
-        @if (isValidField('nameProduct')) {
-          <span class="text-sm text-red-500">{{getFieldError("nameProduct")}}</span>
+        @if (formValidatedService.isValidField("nameProduct", myForm)) {
+          <span class="text-sm text-red-500">{{formValidatedService.getFieldError("nameProduct", myForm)}}</span>
         }
       </div>
     </div>
@@ -31,8 +31,8 @@
           formControlName="priceProduct"
         />
 
-        @if (isValidField('priceProduct')) {
-          <span class="text-sm text-red-500">{{getFieldError("priceProduct")}}</span>
+        @if (formValidatedService.isValidField("priceProduct", myForm)) {
+          <span class="text-sm text-red-500">{{formValidatedService.getFieldError("priceProduct", myForm)}}</span>
         }
       </div>
     </div>
@@ -48,8 +48,8 @@
           formControlName="inStorageProduct"
         />
 
-        @if (isValidField('inStorageProduct')) {
-          <span class="text-sm text-red-500">{{getFieldError("inStorageProduct")}} </span>
+        @if (formValidatedService.isValidField("inStorageProduct", myForm)) {
+          <span class="text-sm text-red-500">{{formValidatedService.getFieldError("inStorageProduct", myForm)}} </span>
         }
       </div>
     </div>
