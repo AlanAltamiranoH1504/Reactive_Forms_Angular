@@ -1,20 +1,22 @@
 <h2 class="text-2xl font-semibold">Validaciones Reactivas</h2>
-<hr class="my-4 border-gray-300">
+<hr class="my-4 border-gray-300" />
 
 <div class="max-w-3xl">
-  <form autocomplete="off" class="space-y-6">
-
+  <form autocomplete="off" class="space-y-6" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
     <!-- Nombre -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
       <label class="md:col-span-1 font-medium text-gray-700">Nombre y apellido</label>
       <div class="md:col-span-2">
-        <input type="text"
-               class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-               placeholder="Nombre del usuario">
+        <input
+          type="text"
+          class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Nombre del usuario"
+          formControlName="name"
+        />
 
-        <span class="text-sm text-red-500">
-          Debe de ser en formato de nombre y apellido
-        </span>
+        @if (formValidatorService.isValidField("name", registerForm)) {
+          <span class="text-sm text-red-500"> Debe de ser en formato de nombre y apellido </span> 
+        }
       </div>
     </div>
 
@@ -22,13 +24,16 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
       <label class="md:col-span-1 font-medium text-gray-700">Email</label>
       <div class="md:col-span-2">
-        <input type="email"
-               class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-               placeholder="Email del usuario">
-
-        <span class="text-sm text-red-500">
-          mensaje de error del email
-        </span>
+        <input
+          type="email"
+          formControlName="email"
+          class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Email del usuario"
+        />
+        
+        @if (formValidatorService.isValidField("email", registerForm)) {
+          <span class="text-sm text-red-500">{{formValidatorService.getFieldError("email", registerForm)}}</span> 
+        }
       </div>
     </div>
 
@@ -36,13 +41,16 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
       <label class="md:col-span-1 font-medium text-gray-700">Username</label>
       <div class="md:col-span-2">
-        <input type="text"
-               class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-               placeholder="Nombre código del usuario">
+        <input
+          type="text"
+          class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Nombre código del usuario"
+          formControlName="username"
+        />
 
-        <span class="text-sm text-red-500">
-          El username no puede ser Strider
-        </span>
+        @if (formValidatorService.isValidField("username", registerForm)) {
+          <span class="text-sm text-red-500">{{formValidatorService.getFieldError("username", registerForm)}}</span> 
+        }
       </div>
     </div>
 
@@ -50,13 +58,16 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
       <label class="md:col-span-1 font-medium text-gray-700">Password</label>
       <div class="md:col-span-2">
-        <input type="password"
-               class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-               placeholder="Password de su cuenta">
+        <input
+          type="password"
+          formControlName="password"
+          class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Password de su cuenta"
+        />
 
-        <span class="text-sm text-red-500">
-          La contraseña debe de ser mayor de 6 caracteres.
-        </span>
+        @if (formValidatorService.isValidField("password", registerForm)) {
+          <span class="text-sm text-red-500">{{formValidatorService.getFieldError("password", registerForm)}}</span> 
+        }
       </div>
     </div>
 
@@ -64,24 +75,28 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
       <label class="md:col-span-1 font-medium text-gray-700">Confirmar</label>
       <div class="md:col-span-2">
-        <input type="password"
-               class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-               placeholder="Confirmar la contraseña">
+        <input
+          type="password"
+          formControlName="confirmedPassword"
+          class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Confirmar la contraseña"
+        />
 
-        <span class="text-sm text-red-500">
-          Las contraseñas deben de ser iguales
-        </span>
+        @if (formValidatorService.isValidField("confirmedPassword", registerForm)) {
+          <span class="text-sm text-red-500">{{formValidatorService.getFieldError("confirmedPassword", registerForm)}}</span> 
+        }
       </div>
     </div>
 
     <!-- Botón -->
     <div class="flex justify-end">
-      <button type="submit"
-              class="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition">
+      <button
+        type="submit"
+        class="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition"
+      >
         Crear
       </button>
     </div>
-
   </form>
 </div>
 
