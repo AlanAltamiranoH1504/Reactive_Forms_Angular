@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormArray, FormGroup, ValidationErrors } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root',
@@ -9,10 +9,24 @@ export class FormValidatedService {
     return myForm.controls[fieldName].errors && myForm.controls[fieldName].touched;
   }
 
+  public isValidFieldInArray(formArray: FormArray, index: number) {
+    return formArray.controls[index].errors && formArray.controls[index].touched;
+  }
+
   public getFieldError(fieldName: string, myForm: FormGroup) {
     if (!myForm.controls[fieldName]) return null;
     const errors = myForm.controls[fieldName].errors ?? {};
+    return this.getTextError(errors);
+  }
 
+  public getFieldErrorInArray(formArray: FormArray, index: number) {
+    if (!formArray.controls[index]) return null;
+    const errors = formArray.controls[index].errors ?? {};
+
+    return this.getTextError(errors);
+  }
+
+  public getTextError(errors: ValidationErrors) {
     for (const key of Object.keys(errors)) {
       switch (key) {
         case 'required':
